@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=500, initial-scale=1.0" />
+    <title>tiny-drophandler</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-size: 16px;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+      }
+      body,
+      pre,
+      code {
+        font-family: "Roboto Mono", monospace;
+      }
+      pre {
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1.3;
+        border: 1px solid #ddd;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>tiny-drophandler</h1>
+    <p>
+      You can try on this page.<br />Try drop multiple files and folders.<br />...
+      and check out the console.
+    </p>
+    <div class="drop-area"></div>
+    <pre><code>&lt;script src="tiny-drophandler.umd.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  const dropArea = document.querySelector(".drop-area");
+  const detach = TinyDrophandler.attachDropHandler({
+    target: dropArea,
+    onDragOver: (e) => {
+      dropArea.classList.add("drag-over");
+    },
+    onDragLeave: (e) => {
+      dropArea.classList.remove("drag-over");
+    },
+    onDrop: (files) => {
+      console.log(files);
+    },
+  });
+&lt;/script&gt;</code></pre>
+    <script src="tiny-drophandler.umd.min.js"></script>
+    <script>
+      TinyDrophandler.attachDropHandler({
+        onDrop: (files) => {
+          console.log(files);
+        },
+      });
+      [...document.querySelectorAll("pre")].forEach((pre) => {
+        pre.addEventListener("click", () => {
+          if (window.getSelection().toString() === "") {
+            const range = document.createRange();
+            range.selectNodeContents(pre);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

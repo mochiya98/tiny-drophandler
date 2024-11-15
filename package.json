@@ -1,0 +1,34 @@
+{
+  "name": "tiny-drophandler",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/tiny-drophandler.d.ts",
+      "import": "./dist/tiny-drophandler.js",
+      "require": "./dist/tiny-drophandler.cjs"
+    }
+  },
+  "main": "./dist/tiny-drophandler.cjs",
+  "module": "./dist/tiny-drophandler.js",
+  "types": "./dist/tiny-drophandler.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": " rollup -c rollup.config.js -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.9.2",
+    "@types/node": "^22.8.1",
+    "brotli-size": "^4.0.0",
+    "gzip-size": "^7.0.0",
+    "rollup": "^4.26.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc-minify": "^1.1.2",
+    "typescript": "^5.6.3"
+  }
+}
